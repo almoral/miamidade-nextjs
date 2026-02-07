@@ -1,5 +1,5 @@
 {
-  "name": "test-sanity-project",
+  "name": "miamidadegov",
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
@@ -9,9 +9,7 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
-    "import:orgs": "tsx import-organizations.ts",
-    "preview:orgs": "tsx preview-import.ts"
+    "deploy-graphql": "sanity graphql deploy"
   },
   "keywords": [
     "sanity"
@@ -24,17 +22,11 @@
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
-    "@sanity/client": "^7.14.1",
     "@sanity/eslint-config-studio": "^6.0.0",
-    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.1",
-    "@types/xml2js": "^0.4.14",
-    "dotenv": "^17.2.4",
     "eslint": "^9.28",
     "prettier": "^3.5",
-    "tsx": "^4.21.0",
-    "typescript": "^5.8",
-    "xml2js": "^0.6.2"
+    "typescript": "^5.8"
   },
   "prettier": {
     "semi": false,
