@@ -40,7 +40,8 @@ export default async function PostPage({
       )}
       <h1 className="text-4xl font-bold mb-8">{service.name}</h1>
       <div className="prose">
-        {Array.isArray(service.description) && <PortableText value={service.description} />}
+        
+        {Array.isArray(service.longDescription) && <PortableText value={service.longDescription} />}
       </div>
     </main>
   );
