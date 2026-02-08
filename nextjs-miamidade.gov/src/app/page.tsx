@@ -5,7 +5,7 @@ import { client } from "@/sanity/client";
 
 const SERVICES_QUERY = `*[
   _type == "service"
-]|order(name asc)[0...12]{_id, name, description, slug}`;
+]|order(name asc){_id, name, description, slug}`;
 
 const options = { next: { revalidate: 30 } };
 
