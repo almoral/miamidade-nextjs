@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import Link from "next/link";
 import Card, { type CardProps } from "@/components/Card";
 
+
 const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]`;
 
 const { projectId, dataset } = client.config();
@@ -44,7 +45,7 @@ export default async function PostPage({
         
         {Array.isArray(service.longDescription) && <PortableText value={service.longDescription} />}
 
-        <Card {...{ title: service.name, description: service.shortDescription }} />
+        <Card {...{ title: service.name, description: service.description }} />
 
       </div>
     </main>
