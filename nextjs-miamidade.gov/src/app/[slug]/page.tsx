@@ -3,6 +3,8 @@ import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { client } from "@/sanity/client";
 import Link from "next/link";
+import Accordion from "@/components/Accordion";
+import Card, { type CardProps } from "@/components/Card";
 
 const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]`;
 
@@ -42,6 +44,9 @@ export default async function PostPage({
       <div className="prose">
         
         {Array.isArray(service.longDescription) && <PortableText value={service.longDescription} />}
+
+        <Card {...{ title: service.name, description: service.shortDescription }} />
+
       </div>
     </main>
   );

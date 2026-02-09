@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
+import { draftMode } from "next/headers";
 
-import { client } from "@/sanity/client";
+import { client, clientWithToken } from "@/sanity/client";
 
 const SERVICES_QUERY = `*[
   _type == "service"
@@ -21,7 +22,14 @@ const SERVICES_QUERY = `*[
 const options = { next: { revalidate: 30 } };
 
 export default async function IndexPage() {
-  const services = await client.fetch<SanityDocument[]>(SERVICES_QUERY, {}, options);
+  const { isEnabled } = await draftMode();
+  const sanityClient = isEnabled ? clientWithToken : client;
+  
+  const services = await sanityClient.fetch<SanityDocument[]>(
+    SERVICES_QUERY,
+    {},
+    isEnabled ? { perspective: "previewDrafts" } : options
+  );
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
@@ -30,13 +38,13 @@ export default async function IndexPage() {
         {services.map((service) => (
           <li className="hover:underline" key={service._id}>
             <Link href={`/${service.slug.current}`}>
-              <h2 className="text-xl font-semibold">{service.name}</h2>
+              <h2 className="text-xl font-semibold" data-sanity-edit-target={service.name}>{service.name}</h2>
               {service.organization && (
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600" data-sanity-edit-target={service.organization.name}>
                   {service.organization.name}
                 </p>
               )}
-              <p>{service.description}</p>
+              <p data-sanity-edit-target={service.description}>{service.description}</p>
             </Link>
           </li>
         ))}
