@@ -5,7 +5,18 @@ import { client } from "@/sanity/client";
 
 const SERVICES_QUERY = `*[
   _type == "service"
-]|order(name asc){_id, name, description, slug}`;
+]|order(name asc){
+  _id, 
+  name, 
+  description, 
+  slug,
+  organization->{
+    _id,
+    name,
+    slug,
+    description
+  }
+}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -20,6 +31,11 @@ export default async function IndexPage() {
           <li className="hover:underline" key={service._id}>
             <Link href={`/${service.slug.current}`}>
               <h2 className="text-xl font-semibold">{service.name}</h2>
+              {service.organization && (
+                <p className="text-sm text-gray-600">
+                  {service.organization.name}
+                </p>
+              )}
               <p>{service.description}</p>
             </Link>
           </li>
