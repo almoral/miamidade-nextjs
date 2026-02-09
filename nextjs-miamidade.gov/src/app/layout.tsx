@@ -27,8 +27,17 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="stylesheet" href="https://review.miamidade.gov/resources/js/components/countyTemplate/styles.css" media="all" /> <noscript><link rel="stylesheet" href="https://review.miamidade.gov/resources/js/components/countyTemplate/styles.css" />
-    </noscript>
+        <link
+          rel="stylesheet"
+          href="https://review.miamidade.gov/resources/js/components/countyTemplate/styles.css"
+          media="all"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://review.miamidade.gov/resources/js/components/countyTemplate/styles.css"
+          />
+        </noscript>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -36,7 +45,10 @@ export default async function RootLayout({
         {children}
         <VisualEditing />
 
-        <Script src="https://review.miamidade.gov/resources/js/components/countyTemplate/main.js"/>
+        <Script
+          src="https://review.miamidade.gov/resources/js/components/countyTemplate/main.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

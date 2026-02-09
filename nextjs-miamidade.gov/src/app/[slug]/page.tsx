@@ -3,7 +3,6 @@ import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { client } from "@/sanity/client";
 import Link from "next/link";
-import Accordion from "@/components/Accordion";
 import Card, { type CardProps } from "@/components/Card";
 
 const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]`;
